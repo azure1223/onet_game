@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:onet2/game_widget.dart';
+import 'package:onet_mon/game_widget.dart';
 
 class AudioPlayerComponent extends Component with HasGameRef<MyGame> {
   @override

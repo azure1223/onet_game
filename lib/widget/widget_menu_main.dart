@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:onet2/menu/stand_menu.dart';
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/menu/stand_menu.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class MenuWidget extends StatefulWidget {
   Function playBtnFuc;

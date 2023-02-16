@@ -2,15 +2,15 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:onet2/classes/class_game.dart';
-import 'package:onet2/classes/onet_model.dart';
-import 'package:onet2/components/comp_toggle_btn.dart';
-import 'package:onet2/classes/constants.dart';
-import 'package:onet2/components/audio_component.dart';
-import 'package:onet2/game_view.dart';
+import 'package:onet_mon/classes/class_game.dart';
+import 'package:onet_mon/classes/onet_model.dart';
+import 'package:onet_mon/components/comp_toggle_btn.dart';
+import 'package:onet_mon/classes/constants.dart';
+import 'package:onet_mon/components/audio_component.dart';
+import 'package:onet_mon/game_view.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:onet2/components/timer_component.dart';
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/components/timer_component.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 import 'package:provider/provider.dart';
 
@@ -122,7 +122,6 @@ class MyGame extends FlameGame with HasTappables {
   }
 
   void gameOver() {
-    print('gameOver time over');
     Provider.of<GameSettings>(buildContext, listen: false).setGameState(GameType.gameOver);
   }
 
@@ -158,7 +157,6 @@ class MyGame extends FlameGame with HasTappables {
   GameView gameView;
   @override
   void lifecycleStateChange(AppLifecycleState state) {
-    print('state : $state');
     switch (state) {
       case AppLifecycleState.resumed:
         timer.pauseTimer(true);

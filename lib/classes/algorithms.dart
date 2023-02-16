@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'dart:math' as math;
 
-import 'package:onet2/classes/onet_model.dart';
-import 'package:onet2/classes/search_node.dart';
+import 'package:onet_mon/classes/onet_model.dart';
+import 'package:onet_mon/classes/search_node.dart';
 
 class BFSAlgorithm {
   OnetModel model;

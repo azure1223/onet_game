@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/menu/stand_menu.dart';
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/menu/stand_menu.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class OptionWidget extends StatefulWidget {
   OptionWidget({Key key}) : super(key: key);

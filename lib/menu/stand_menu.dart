@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/menu/menu_back_painter.dart';
-import 'package:onet2/menu/stand_menu_button.dart';
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/menu/menu_back_painter.dart';
+import 'package:onet_mon/menu/stand_menu_button.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class StandMenu extends StatelessWidget {
   String title;

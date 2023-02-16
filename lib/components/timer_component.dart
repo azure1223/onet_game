@@ -25,7 +25,6 @@ class TmerWidget extends PositionComponent {
   }
 
   startTimer() {
-    print('startTimer()');
     countDown = Timer(1, onTick: () {
       if (reimainingTime > 0) {
         reimainingTime--;
@@ -41,7 +40,6 @@ class TmerWidget extends PositionComponent {
   }
 
   pauseTimer(bool value) {
-    print('pauseTimer : $value');
     timerRunning = value;
   }
 

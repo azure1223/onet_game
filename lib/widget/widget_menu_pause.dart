@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/classes/class_game.dart';
-import 'package:onet2/menu/stand_menu.dart';
+import 'package:onet_mon/classes/class_game.dart';
+import 'package:onet_mon/menu/stand_menu.dart';
 import 'package:provider/provider.dart';
 
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class PauseMenuWidget extends StatefulWidget {
   PauseMenuWidget({Key key}) : super(key: key);

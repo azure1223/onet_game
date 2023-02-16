@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/classes/algorithms.dart';
+import 'package:onet_mon/classes/algorithms.dart';
 import 'dart:math' as math;
 
 class OnetModel {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:onet2/classes/constants.dart';
-import 'package:onet2/utils/scale_config.dart';
+import 'package:onet_mon/classes/constants.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class MenuButtonPainter extends CustomPainter {
   String title;

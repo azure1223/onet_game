@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:onet2/game_widget.dart';
-import 'package:onet2/painters/painter_background.dart';
+import 'package:onet_mon/game_widget.dart';
+import 'package:onet_mon/painters/painter_background.dart';
 
 class GameScreen extends StatefulWidget {
   GameScreen({Key key}) : super(key: key);
