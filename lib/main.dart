@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onet2/classes/class_game.dart';
-import 'package:onet2/scrn_main.dart';
+import 'package:onet2/screen/scrn_main.dart';
 import 'package:provider/provider.dart';
 
 void main() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onet2/menu/stand_menu.dart';
 import 'package:onet2/utils/scale_config.dart';
 
@@ -20,7 +21,12 @@ class _MenuWidgetState extends State<MenuWidget> {
         children: [
           Expanded(
             flex: 6,
-            child: Container(),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: SvgPicture.asset('assets/background/bg01.svg'),
+              ),
+            ),
           ),
           Expanded(
             flex: 4,
@@ -30,29 +36,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                 title: 'menu',
                 items: [
                   StandMenuItem(title: 'play', onTap: widget.playBtnFuc),
-                  StandMenuItem(
-                      title: 'option',
-                      onTap: () {
-                        // showGeneralDialog(
-                        //     barrierColor: Colors.black.withOpacity(.9),
-                        //     transitionBuilder: (context, a1, a2, widget) {
-                        //       final curvedValue = Curves.easeInOutBack.transform(a1.value) - 1.0;
-                        //       return Transform(
-                        //         transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
-                        //         child: Opacity(
-                        //           opacity: a1.value,
-                        //           child: OptionWidget(),
-                        //         ),
-                        //       );
-                        //     },
-                        //     transitionDuration: Duration(milliseconds: 500),
-                        //     barrierDismissible: true,
-                        //     barrierLabel: '',
-                        //     context: context,
-                        //     pageBuilder: (context, animation1, animation2) {
-                        //       return;
-                        //     });
-                      }),
+                  StandMenuItem(title: 'option', onTap: () {}),
                   StandMenuItem(title: 'exit', onTap: () {}),
                 ],
               ),

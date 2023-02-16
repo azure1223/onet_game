@@ -28,12 +28,10 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
   DFSAlgorithm dfsAlgorithm = DFSAlgorithm();
 
   SearchNode finalNode;
-  // Handler handler = Handler();
   double cellSize;
   double top;
   double left;
 
-  // GameListener listener;
   double mBorderWidth;
   int mCellColor;
   double mLineWidth;
