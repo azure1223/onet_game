@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/onet/class_game.dart';
+import 'package:onet2/classes/class_game.dart';
 import 'package:provider/provider.dart';
 
 class GameOverWidget extends StatefulWidget {

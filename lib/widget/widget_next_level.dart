@@ -28,6 +28,7 @@ class _NextLevelWidgetState extends State<NextLevelWidget> {
               child: StandMenu(
                 title: 'victory',
                 items: [
+                  StandMenuItem(title: 'congrat', onTap: () {}),
                   StandMenuItem(title: 'next', onTap: widget.nexLevelBtn),
                 ],
               ),

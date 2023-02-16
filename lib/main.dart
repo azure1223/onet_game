@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:onet2/onet/class_game.dart';
+import 'package:onet2/classes/class_game.dart';
 import 'package:onet2/scrn_main.dart';
-import 'package:onet2/utils/scale_config.dart';
 import 'package:provider/provider.dart';
 
 void main() {

@@ -2,13 +2,13 @@ import 'dart:math';
 import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:onet2/onet/algorithms/bfs_algorithm.dart';
-import 'package:onet2/onet/algorithms/dfs_algorithm.dart';
-import 'package:onet2/onet/game_state.dart';
-import 'package:onet2/onet/game_widget.dart';
-import 'package:onet2/onet/onet_model.dart';
-import 'package:onet2/onet/search_node.dart';
+import 'package:onet2/classes/algorithms.dart';
+import 'package:onet2/classes/game_state.dart';
+import 'package:onet2/classes/onet_model.dart';
+import 'package:onet2/classes/search_node.dart';
 import 'dart:math' as math;
+
+import 'package:onet2/game_widget.dart';
 
 class GameView extends PositionComponent with HasGameRef<MyGame> {
   Images images;

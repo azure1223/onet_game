@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:onet2/classes/class_game.dart';
 import 'package:onet2/menu/stand_menu.dart';
-import 'package:onet2/onet/class_game.dart';
 import 'package:provider/provider.dart';
 
 import 'package:onet2/utils/scale_config.dart';

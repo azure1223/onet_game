@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:onet2/constants.dart';
+import 'package:onet2/classes/constants.dart';
 import 'package:onet2/utils/scale_config.dart';
 
 class MenuButtonPainter extends CustomPainter {

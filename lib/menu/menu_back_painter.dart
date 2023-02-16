@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:onet2/constants.dart';
+import 'package:onet2/classes/constants.dart';
 import 'package:onet2/utils/scale_config.dart';
 
 class MenuBackPainter extends CustomPainter {

@@ -1,14 +1,14 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:onet2/menu_over_widget.dart';
-import 'package:onet2/menu_pause_widget.dart';
-import 'package:onet2/onet/class_game.dart';
-import 'package:onet2/onet/game_state.dart';
-import 'package:onet2/onet/game_widget.dart';
-import 'package:onet2/painters/p_background.dart';
+import 'package:onet2/classes/class_game.dart';
+import 'package:onet2/classes/game_state.dart';
+import 'package:onet2/game_widget.dart';
+import 'package:onet2/painters/painter_background.dart';
 import 'package:onet2/utils/scale_config.dart';
-import 'package:onet2/widget_menu.dart';
-import 'package:onet2/widget_next_level.dart';
+import 'package:onet2/widget/widget_menu_main.dart';
+import 'package:onet2/widget/widget_menu_over.dart';
+import 'package:onet2/widget/widget_menu_pause.dart';
+import 'package:onet2/widget/widget_next_level.dart';
 import 'package:provider/provider.dart';
 
 class MainSreen extends StatefulWidget {

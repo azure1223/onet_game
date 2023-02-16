@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:onet2/onet/algorithms/dfs_algorithm.dart';
+import 'package:onet2/classes/algorithms.dart';
 import 'dart:math' as math;
 
 class OnetModel {
-  // static const int gravityEmpty = -1;
-  // static const int gravityBottom = 3;
-  // static const int gravityInside = 7;
-  // static const int gravityLeft = 5;
-  // static const int GRAVITY_OUTSIDE = 6;
-  // static const int GRAVITY_RIGHT = 4;
-  // static const int GRAVITY_TOP = 2;
   List<int> data = [];
   DFSAlgorithm dfs = DFSAlgorithm();
   bool portrait = false;
-  int width = 16;
-  int height = 9;
+  int width = 4;
+  int height = 3;
   int dataLength = 0;
   List<math.Point> mPrevious = [];
 
