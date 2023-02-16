@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onet_mon/menu/stand_menu.dart';
 import 'package:onet_mon/utils/scale_config.dart';
@@ -37,7 +40,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                 items: [
                   StandMenuItem(title: 'play', onTap: widget.playBtnFuc),
                   StandMenuItem(title: 'option', onTap: () {}),
-                  StandMenuItem(title: 'exit', onTap: () {}),
+                  StandMenuItem(
+                      title: 'exit',
+                      onTap: () {
+                        SystemNavigator.pop();
+
+                        exit(0);
+                      }),
                 ],
               ),
             ),

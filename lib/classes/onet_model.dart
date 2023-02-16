@@ -6,8 +6,8 @@ class OnetModel {
   List<int> data = [];
   DFSAlgorithm dfs = DFSAlgorithm();
   bool portrait = false;
-  int width = 4;
-  int height = 3;
+  int width = 16;
+  int height = 8;
   int dataLength = 0;
   List<math.Point> mPrevious = [];
 

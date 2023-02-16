@@ -6,8 +6,8 @@ class TmerWidget extends PositionComponent {
   TmerWidget({this.onFinish, Vector2 size, Vector2 position}) : super(size: size, position: position);
   double percent = 0;
   Timer countDown;
-  int reimainingTime = 60;
-  int total = 60;
+  int reimainingTime = 600;
+  int total = 600;
   bool timerRunning = false;
 
   @override

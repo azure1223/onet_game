@@ -1,4 +1,4 @@
-package com.example.onet2
+package com.azure.game.onetmon
 
 import io.flutter.embedding.android.FlutterActivity
 

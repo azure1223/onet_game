@@ -184,6 +184,7 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
     for (int i = 0; i < total - 1; i++) {
       int x1 = i % model.getWidth;
       int y1 = (i / model.getWidth).floor();
+      // int y1 = (i / model.getWidth).floor();
       if (model.getData(x1, y1) != -1) {
         for (int j = i + 1; j < total; j++) {
           int x2 = j % model.getWidth;
