@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:onet2/menu/stand_menu.dart';
-import 'package:onet2/widget_option.dart';
 import 'package:onet2/utils/scale_config.dart';
 
 class MenuWidget extends StatefulWidget {
