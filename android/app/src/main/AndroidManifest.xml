@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.onet2">
+    package="com.azure.game.onetmon">
    <application
-        android:label="onet2"
+        android:label="Onet Mon"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
