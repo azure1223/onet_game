@@ -37,38 +37,35 @@ class _MainSreenState extends State<MainSreen> {
         child: CustomPaint(
           size: MediaQuery.of(context).size,
           painter: BackgroundPainter(),
-          child: SafeArea(
-            child: Consumer<GameSettings>(
-              builder: (context, gs, child) {
-                switch (gs.gameState) {
-                  case GameType.playing:
-                    print('Media ::: ${MediaQuery.of(context).size}');
-                    return GameWidget(game: myGame);
-                    break;
-                  case GameType.gamePaused:
-                    return PauseMenuWidget();
-                    break;
-                  case GameType.gameOver:
-                    return GameOverWidget();
-                    break;
-                  case GameType.nextLevel:
-                    return NextLevelWidget(nexLevelBtn: () {
+          child: Consumer<GameSettings>(
+            builder: (context, gs, child) {
+              switch (gs.gameState) {
+                case GameType.playing:
+                  return GameWidget(game: myGame);
+                  break;
+                case GameType.gamePaused:
+                  return PauseMenuWidget();
+                  break;
+                case GameType.gameOver:
+                  return GameOverWidget();
+                  break;
+                case GameType.nextLevel:
+                  return NextLevelWidget(nexLevelBtn: () {
+                    context.read<GameSettings>().setGameState(GameType.playing);
+                    GameState.level++;
+                    myGame = MyGame();
+                  });
+                  break;
+                default:
+                  return MenuWidget(
+                    playBtnFuc: () {
                       context.read<GameSettings>().setGameState(GameType.playing);
-                      GameState.level++;
+                      GameState.level = 1;
                       myGame = MyGame();
-                    });
-                    break;
-                  default:
-                    return MenuWidget(
-                      playBtnFuc: () {
-                        context.read<GameSettings>().setGameState(GameType.playing);
-                        GameState.level = 1;
-                        myGame = MyGame();
-                      },
-                    );
-                }
-              },
-            ),
+                    },
+                  );
+              }
+            },
           ),
         ),
       ),
