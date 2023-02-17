@@ -8,7 +8,6 @@ import 'package:onet_mon/classes/constants.dart';
 import 'package:onet_mon/components/audio_component.dart';
 import 'package:onet_mon/game_view.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:onet_mon/components/timer_component.dart';
 import 'package:onet_mon/utils/scale_config.dart';
 import 'package:provider/provider.dart';
 
@@ -75,12 +74,6 @@ class MyGame extends FlameGame with HasTappables {
 
   void gameOver() {
     Provider.of<GameSettings>(buildContext, listen: false).setGameState(GameType.gameOver);
-  }
-
-  @override
-  void onTapDown(int pointerId, TapDownInfo info) {
-    super.onTapDown(pointerId, info);
-    gameView.onTouchEvent(info.eventPosition.global);
   }
 
   void nextLevel() {

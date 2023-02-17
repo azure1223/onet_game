@@ -11,7 +11,7 @@ import 'dart:math' as math;
 import 'package:onet_mon/game_widget.dart';
 import 'package:onet_mon/utils/scale_config.dart';
 
-class GameView extends PositionComponent with HasGameRef<MyGame> {
+class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
   Images images;
   Function nextLevel;
   Function playSound;
@@ -57,18 +57,17 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
       playSound('bad.wav');
     }
     selected.clear();
-    // invalidate();
     if (!model.isFinished() && !model.isPaired()) {
       playSound('random.wav');
       model.randomize();
     }
-    // model.gravitate(GameState.level);
   }
 
   @override
-  void onMount() async {
-    super.onMount();
-    // model = OnetModel();
+  @mustCallSuper
+  bool onTapDown(info) {
+    onTouchEvent(info.eventPosition.global);
+    return true;
   }
 
   void onMatched() {
@@ -164,19 +163,16 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
                 ? Colors.red
                 : selected.contains(Point(x, y))
                     ? Colors.blue
-                    : Colors.green);
+                    : Color(0xFFFFDCFA));
 
       canvas.drawRect(
         r,
         mPaint
-          ..color = Colors.purple
+          ..color = Color.fromARGB(255, 96, 63, 101)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 3,
+          ..strokeWidth = 1.5,
       );
       var img = images.fromCache('icon$value.png');
-
-      // canvas.drawImage(img, Offset(r.center.dx - (img.width / 2), r.center.dy - (img.height / 2)), mPaint);
-      // canvas.drawImageRect(img, r, r, Paint());
       canvas.drawImageNine(img, r, r2, Paint());
     }
   }
@@ -187,7 +183,6 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
     for (int i = 0; i < total - 1; i++) {
       int x1 = i % model.getWidth;
       int y1 = (i / model.getWidth).floor();
-      // int y1 = (i / model.getWidth).floor();
       if (model.getData(x1, y1) != -1) {
         for (int j = i + 1; j < total; j++) {
           int x2 = j % model.getWidth;
