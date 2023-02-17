@@ -20,6 +20,8 @@ class MainSreen extends StatefulWidget {
 
 class _MainSreenState extends State<MainSreen> {
   MyGame myGame;
+  int height = 0;
+  int width = 0;
   @override
   void initState() {
     super.initState();
@@ -40,6 +42,7 @@ class _MainSreenState extends State<MainSreen> {
               builder: (context, gs, child) {
                 switch (gs.gameState) {
                   case GameType.playing:
+                    print('Media ::: ${MediaQuery.of(context).size}');
                     return GameWidget(game: myGame);
                     break;
                   case GameType.gamePaused:

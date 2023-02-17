@@ -6,8 +6,8 @@ class TmerWidget extends PositionComponent {
   TmerWidget({this.onFinish, Vector2 size, Vector2 position}) : super(size: size, position: position);
   double percent = 0;
   Timer countDown;
-  int reimainingTime = 600;
-  int total = 600;
+  int reimainingTime = 300;
+  int total = 300;
   bool timerRunning = false;
 
   @override
@@ -49,14 +49,23 @@ class TmerWidget extends PositionComponent {
 
     Paint paint = Paint();
     paint.style = PaintingStyle.fill;
-    paint.color = Colors.red;
+    paint.color = Colors.white;
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTRB(12, 1, size.x - 12, size.y - 2), Radius.circular(size.y / 2)),
+      RRect.fromRectAndRadius(Rect.fromLTRB(0, 0, size.x, size.y), Radius.circular(4)),
       paint,
     );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTRB(12, 1, (size.x - 12) * (1 - percent), size.y - 2), Radius.circular(size.y / 2)),
-      paint..color = Colors.blue,
-    );
+
+    double barSize = 4;
+    double i = size.y - barSize - 2;
+    while (i > size.y * percent) {
+      double perc = ((size.y - i) / size.y);
+      paint.color = mix(Color.fromARGB(255, 11, 243, 19), Color.fromARGB(255, 253, 17, 0), perc);
+      canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(2, i, size.x - 4, barSize), Radius.circular(2)), paint);
+      i -= barSize + 2;
+    }
+  }
+
+  Color mix(Color a, Color b, double percent) {
+    return Color.fromRGBO((a.red * percent + b.red * (1.0 - percent)).floor(), ((a.green * percent) + (b.green * (1.0 - percent))).floor(), (a.blue * percent + b.blue * (1.0 - percent)).floor(), 1.0);
   }
 }

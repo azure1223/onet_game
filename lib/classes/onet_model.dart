@@ -17,6 +17,14 @@ class OnetModel {
     // portrait = width < height;
     newGame();
   }
+  OnetModel.fromValue({@required int w, @required int h}) {
+    width = w;
+    height = h;
+    dataLength = width * height;
+    data = [];
+    // portrait = width < height;
+    newGame();
+  }
 
   int get getWidth => width;
 
@@ -188,7 +196,6 @@ class OnetModel {
   void zigzagHorizontal() {
     Rect r = Rect.fromLTRB(0, 0, (width - 1) * 1.0, 0);
     for (int i = 0; i < width; i += 2) {
-      ;
       r = Rect.fromLTRB(r.left, i * 1.0, r.right, i * 1.0);
       pull(-1, 0, r);
     }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:onet_mon/classes/class_game.dart';
 import 'package:onet_mon/screen/scrn_main.dart';
 import 'package:provider/provider.dart';
+import 'package:flame/flame.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Flame.device.fullScreen();
+  Flame.device.setLandscape();
   runApp(
     ChangeNotifierProvider(
       create: (context) => GameSettings(),
@@ -16,12 +19,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
-
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

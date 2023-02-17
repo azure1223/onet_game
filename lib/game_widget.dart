@@ -1,17 +1,15 @@
-import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:onet_mon/classes/class_game.dart';
 import 'package:onet_mon/classes/onet_model.dart';
-import 'package:onet_mon/components/comp_toggle_btn.dart';
+import 'package:onet_mon/components/command_component.dart';
 import 'package:onet_mon/classes/constants.dart';
 import 'package:onet_mon/components/audio_component.dart';
 import 'package:onet_mon/game_view.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:onet_mon/components/timer_component.dart';
 import 'package:onet_mon/utils/scale_config.dart';
-
 import 'package:provider/provider.dart';
 
 class MyGame extends FlameGame with HasTappables {
@@ -19,14 +17,8 @@ class MyGame extends FlameGame with HasTappables {
   bool soundEnable = true;
 
   OnetModel om;
-
-  SpriteButtonComponent hintBtn;
-  SpriteButtonComponent pauseBtn;
-  ToggleButton soundBtn;
-  ToggleButton musicBtn;
   AudioPlayerComponent audioplayer;
-
-  TmerWidget timer;
+  CommandComponent commComp;
 
   @override
   void onGameResize(Vector2 canvasSize) {
@@ -46,51 +38,17 @@ class MyGame extends FlameGame with HasTappables {
   }
 
   loadComponents() {
-    om = OnetModel();
+    Vector2 gameSize = Vector2(canvasSize.x - 50.w, canvasSize.y);
+    int height = 8;
+    int widht = (gameSize.x / (gameSize.y / height)).round();
+
+    om = OnetModel.fromValue(w: widht, h: height);
     audioplayer = AudioPlayerComponent();
-    hintBtn = SpriteButtonComponent(
-      button: Sprite(images.fromCache('ic_hint_up.png')),
-      buttonDown: Sprite(images.fromCache('ic_hint_down.png')),
-      size: Vector2(40.w, 40.h),
-      position: Vector2(canvasSize.x - 50.w, 90.h),
-      onPressed: () {
-        gameView.showHint();
-      },
-    );
 
-    pauseBtn = SpriteButtonComponent(
-      button: Sprite(images.fromCache('ic_pause.png')),
-      size: Vector2(40.w, 40.h),
-      position: Vector2(canvasSize.x - 50.w, 30.h),
-      onPressed: gamePause,
+    commComp = CommandComponent(
+      size: Vector2(50.w, canvasSize.y),
+      position: Vector2(canvasSize.x - 50.w, 0),
     );
-
-    musicBtn = ToggleButton(
-      onSprite: Sprite(images.fromCache('ic_music_on.png')),
-      offSprite: Sprite(images.fromCache('ic_music_off.png')),
-      size: Vector2(40.w, 40.h),
-      position: Vector2(canvasSize.x - 50.w, canvasSize.y - 130.h),
-      onTap: (value) {
-        if (value) {
-          audioplayer.playBgm();
-        } else {
-          audioplayer.stopBgm();
-        }
-      },
-    );
-
-    soundBtn = ToggleButton(
-      isEnable: soundEnable,
-      onSprite: Sprite(images.fromCache('ic_sound_on.png')),
-      offSprite: Sprite(images.fromCache('ic_sound_off.png')),
-      size: Vector2(40.w, 40.h),
-      position: Vector2(canvasSize.x - 50.w, canvasSize.y - 70.h),
-      onTap: (value) {
-        soundEnable = value;
-      },
-    );
-
-    Vector2 gameSize = Vector2(canvasSize.x - 50, canvasSize.y - 10);
 
     gameView = GameView(
       size: gameSize,
@@ -100,14 +58,8 @@ class MyGame extends FlameGame with HasTappables {
       playSound: playSound,
     );
 
-    timer = TmerWidget(size: Vector2(canvasSize.x, 10), position: Vector2(0, canvasSize.y - 10), onFinish: gameOver);
-
     add(gameView);
-    add(hintBtn);
-    add(pauseBtn);
-    add(timer);
-    add(soundBtn);
-    add(musicBtn);
+    add(commComp);
   }
 
   @override
@@ -143,14 +95,14 @@ class MyGame extends FlameGame with HasTappables {
   @override
   void onDetach() {
     audioplayer.stopBgm();
-    timer.pauseTimer(false);
+    commComp.timer.pauseTimer(false);
     super.onDetach();
   }
 
   @override
   void onAttach() {
     audioplayer.stopBgm();
-    timer.pauseTimer(true);
+    commComp.timer.pauseTimer(true);
     super.onDetach();
   }
 
@@ -159,13 +111,13 @@ class MyGame extends FlameGame with HasTappables {
   void lifecycleStateChange(AppLifecycleState state) {
     switch (state) {
       case AppLifecycleState.resumed:
-        timer.pauseTimer(true);
+        commComp.timer.pauseTimer(true);
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
       case AppLifecycleState.detached:
         audioplayer.stopBgm();
-        timer.pauseTimer(false);
+        commComp.timer.pauseTimer(false);
         break;
     }
     super.lifecycleStateChange(state);

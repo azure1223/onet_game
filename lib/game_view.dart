@@ -9,6 +9,7 @@ import 'package:onet_mon/classes/search_node.dart';
 import 'dart:math' as math;
 
 import 'package:onet_mon/game_widget.dart';
+import 'package:onet_mon/utils/scale_config.dart';
 
 class GameView extends PositionComponent with HasGameRef<MyGame> {
   Images images;
@@ -129,9 +130,9 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
 
   onSizeChanged(int w, int h, int oldw, int oldh) {}
 
-  Rect getCellRect(int x, int y) {
-    double l = left + (cellSize * x);
-    double t = top + (cellSize * y);
+  Rect getCellRect(int x, int y, {double padding = 0}) {
+    double l = left + (cellSize * x) + padding;
+    double t = top + (cellSize * y) + padding;
     double w = cellSize;
     double h = cellSize;
     if (x == -1 || x == model.getWidth) {
@@ -146,13 +147,14 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
     if (y == -1) {
       t = top - h;
     }
-    return Rect.fromLTRB(l, t, l + w, t + h);
+    return Rect.fromLTRB(l, t, l + w - (padding * 2), t + h - (padding * 2));
   }
 
-  void drawCell(Canvas canvas, int x, int y) {
+  drawCell(Canvas canvas, int x, int y) {
     int value = model.getData(x, y);
     if (value != -1) {
       Rect r = getCellRect(x, y);
+      Rect r2 = getCellRect(x, y, padding: 10.w);
 
       canvas.drawRect(
           r,
@@ -172,15 +174,16 @@ class GameView extends PositionComponent with HasGameRef<MyGame> {
           ..strokeWidth = 3,
       );
       var img = images.fromCache('icon$value.png');
-      canvas.drawImage(img, Offset(r.center.dx - (img.width / 2), r.center.dy - (img.height / 2)), mPaint);
+
+      // canvas.drawImage(img, Offset(r.center.dx - (img.width / 2), r.center.dy - (img.height / 2)), mPaint);
+      // canvas.drawImageRect(img, r, r, Paint());
+      canvas.drawImageNine(img, r, r2, Paint());
     }
   }
 
   void showHint() {
     int total = model.getWidth * model.getHeight;
-    // this.mLastPortrait = this.model.isPortrait();
-    int i = 0;
-    // loop0:
+
     for (int i = 0; i < total - 1; i++) {
       int x1 = i % model.getWidth;
       int y1 = (i / model.getWidth).floor();
