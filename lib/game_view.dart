@@ -130,9 +130,9 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
 
   onSizeChanged(int w, int h, int oldw, int oldh) {}
 
-  Rect getCellRect(int x, int y, {double padding = 0}) {
-    double l = left + (cellSize * x) + padding;
-    double t = top + (cellSize * y) + padding;
+  Rect getCellRect(int x, int y, {bool padding = false}) {
+    double l = left + (cellSize * x) + (padding ? cellSize * 0.15 : 0.0);
+    double t = top + (cellSize * y) + (padding ? cellSize * 0.15 : 0.0);
     double w = cellSize;
     double h = cellSize;
     if (x == -1 || x == model.getWidth) {
@@ -147,14 +147,14 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
     if (y == -1) {
       t = top - h;
     }
-    return Rect.fromLTRB(l, t, l + w - (padding * 2), t + h - (padding * 2));
+    return Rect.fromLTRB(l, t, l + w - (padding ? cellSize * 0.3 : 0.0), t + h - (padding ? cellSize * 0.3 : 0.0));
   }
 
   drawCell(Canvas canvas, int x, int y) {
     int value = model.getData(x, y);
     if (value != -1) {
       Rect r = getCellRect(x, y);
-      Rect r2 = getCellRect(x, y, padding: 10.w);
+      Rect r2 = getCellRect(x, y, padding: true);
 
       canvas.drawRect(
           r,
