@@ -1,7 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:onet_mon/classes/class_game.dart';
+import 'package:onet_mon/classes/game_settings.dart';
 import 'package:onet_mon/classes/game_state.dart';
+import 'package:onet_mon/classes/shared_data.dart';
 import 'package:onet_mon/game_widget.dart';
 import 'package:onet_mon/painters/painter_background.dart';
 import 'package:onet_mon/utils/scale_config.dart';
@@ -12,8 +14,6 @@ import 'package:onet_mon/widget/widget_next_level.dart';
 import 'package:provider/provider.dart';
 
 class MainSreen extends StatefulWidget {
-  MainSreen({Key key}) : super(key: key);
-
   @override
   State<MainSreen> createState() => _MainSreenState();
 }
@@ -22,9 +22,21 @@ class _MainSreenState extends State<MainSreen> {
   MyGame myGame;
   int height = 0;
   int width = 0;
+
   @override
   void initState() {
+    getData().then((value) => setStates());
     super.initState();
+  }
+
+  Future getData() async {
+    gs = await SharedSettings.getSettings();
+  }
+
+  void setStates() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -37,7 +49,7 @@ class _MainSreenState extends State<MainSreen> {
         child: CustomPaint(
           size: MediaQuery.of(context).size,
           painter: BackgroundPainter(),
-          child: Consumer<GameSettings>(
+          child: Consumer<GameState>(
             builder: (context, gs, child) {
               switch (gs.gameState) {
                 case GameType.playing:
@@ -51,16 +63,16 @@ class _MainSreenState extends State<MainSreen> {
                   break;
                 case GameType.nextLevel:
                   return NextLevelWidget(nexLevelBtn: () {
-                    context.read<GameSettings>().setGameState(GameType.playing);
-                    GameState.level++;
+                    context.read<GameState>().setGameState(GameType.playing);
+                    GameData.level++;
                     myGame = MyGame();
                   });
                   break;
                 default:
                   return MenuWidget(
                     playBtnFuc: () {
-                      context.read<GameSettings>().setGameState(GameType.playing);
-                      GameState.level = 1;
+                      context.read<GameState>().setGameState(GameType.playing);
+                      GameData.level = 1;
                       myGame = MyGame();
                     },
                   );

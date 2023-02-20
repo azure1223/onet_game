@@ -8,9 +8,9 @@ enum GameType {
   gamePaused,
 }
 
-class GameSettings extends ChangeNotifier {
+class GameState extends ChangeNotifier {
   GameType gameState;
-  GameSettings({this.gameState = GameType.none});
+  GameState({this.gameState = GameType.none});
   void setGameState(GameType gt) {
     gameState = gt;
     notifyListeners();

@@ -10,7 +10,7 @@ void main() async {
   Flame.device.setLandscape();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => GameSettings(),
+      create: (context) => GameState(),
       child: MyApp(),
     ),
   );

@@ -34,12 +34,12 @@ class _PauseMenuWidgetState extends State<PauseMenuWidget> {
                   StandMenuItem(
                       title: 'Resume',
                       onTap: () {
-                        context.read<GameSettings>().setGameState(GameType.playing);
+                        context.read<GameState>().setGameState(GameType.playing);
                       }),
                   StandMenuItem(
                       title: 'Exit',
                       onTap: () {
-                        context.read<GameSettings>().setGameState(GameType.none);
+                        context.read<GameState>().setGameState(GameType.none);
                       }),
                 ],
               ),

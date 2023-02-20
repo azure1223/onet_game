@@ -3,6 +3,7 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:onet_mon/classes/algorithms.dart';
+import 'package:onet_mon/classes/game_settings.dart';
 import 'package:onet_mon/classes/game_state.dart';
 import 'package:onet_mon/classes/onet_model.dart';
 import 'package:onet_mon/classes/search_node.dart';
@@ -82,8 +83,8 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
       // bonus += timeLeft / 10;
       nextLevel();
     } else {
-      GameState.score++;
-      model.gravitate(GameState.level);
+      GameData.score++;
+      model.gravitate(GameData.level);
     }
     // final int finalBonus = bonus + 20;
 
@@ -160,10 +161,10 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
           mPaint
             ..style = PaintingStyle.fill
             ..color = hinted.contains(Point(x, y))
-                ? Colors.red
+                ? Colors.purple
                 : selected.contains(Point(x, y))
                     ? Colors.blue
-                    : Color(0xFFFFDCFA));
+                    : color_list[gs.bgColor].withOpacity(gs.bgOpacity));
 
       canvas.drawRect(
         r,
@@ -172,7 +173,7 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5,
       );
-      var img = images.fromCache('icon$value.png');
+      var img = images.fromCache('${gs.gameIcon}/$value.png');
       canvas.drawImageNine(img, r, r2, Paint());
     }
   }

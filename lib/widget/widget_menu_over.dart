@@ -33,7 +33,7 @@ class _GameOverWidgetState extends State<GameOverWidget> {
                   StandMenuItem(
                       title: 'Close',
                       onTap: () {
-                        context.read<GameSettings>().setGameState(GameType.none);
+                        context.read<GameState>().setGameState(GameType.none);
                       }),
                 ],
               ),

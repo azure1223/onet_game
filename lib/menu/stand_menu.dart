@@ -45,3 +45,27 @@ class StandMenuItem {
   Function onTap;
   StandMenuItem({this.title = '', this.onTap});
 }
+
+class CustomMenu extends StatelessWidget {
+  String title;
+  Widget child;
+  CustomMenu({@required this.title, @required this.child, Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: CustomPaint(
+        painter: MenuBackPainter(title),
+        child: Wrap(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 80.h, bottom: 40.w, left: 40.w, right: 40.w),
+              child: child,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

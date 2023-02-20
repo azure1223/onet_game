@@ -1,4 +1,4 @@
-class GameState {
+class GameData {
   List<int> data;
   int height;
   int hint;

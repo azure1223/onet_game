@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:onet_mon/classes/constants.dart';
 import 'package:onet_mon/utils/scale_config.dart';
 
@@ -14,18 +13,18 @@ class MenuBackPainter extends CustomPainter {
 
     Paint fillPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = COLOR_ORANGE;
+      ..color = BACK_COLOR;
 
     Paint strokePaint = Paint()
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 20.0
       ..style = PaintingStyle.stroke
-      ..color = COLOR_BROWN;
+      ..color = BORDER_COLOR;
     Paint strokePaint2 = Paint()
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 14.0
       ..style = PaintingStyle.stroke
-      ..color = COLOR_ORANGE;
+      ..color = BACK_COLOR;
 
     canvas.drawRRect(
         RRect.fromRectAndRadius(
@@ -84,7 +83,7 @@ class MenuBackPainter extends CustomPainter {
 
     TextSpan span = TextSpan(
       style: TextStyle(
-        color: Colors.blue,
+        color: TEXT_COLOR,
         fontFamily: 'Shades',
         fontSize: 40.sp,
       ),

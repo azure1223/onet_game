@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:onet_mon/classes/game_settings.dart';
 
 class TmerWidget extends PositionComponent {
   Function onFinish;
@@ -21,6 +22,7 @@ class TmerWidget extends PositionComponent {
 
   @override
   Future onLoad() async {
+    reimainingTime = total = gs.gameTime;
     startTimer();
   }
 

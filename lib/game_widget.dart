@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:onet_mon/classes/class_game.dart';
+import 'package:onet_mon/classes/game_settings.dart';
 import 'package:onet_mon/classes/onet_model.dart';
 import 'package:onet_mon/components/command_component.dart';
 import 'package:onet_mon/classes/constants.dart';
@@ -29,7 +29,7 @@ class MyGame extends FlameGame with HasTappables {
 
   Future loadFiles() async {
     List.generate(36, (index) {
-      imageList.add('icon$index.png');
+      imageList.add('${gs.gameIcon}/$index.png');
     });
 
     await images.loadAll(imageList);
@@ -38,7 +38,7 @@ class MyGame extends FlameGame with HasTappables {
 
   loadComponents() {
     Vector2 gameSize = Vector2(canvasSize.x - 50.w, canvasSize.y);
-    int height = 8;
+    int height = gs.gameResolution;
     int widht = (gameSize.x / (gameSize.y / height)).round();
 
     om = OnetModel.fromValue(w: widht, h: height);
@@ -73,16 +73,16 @@ class MyGame extends FlameGame with HasTappables {
   }
 
   void gameOver() {
-    Provider.of<GameSettings>(buildContext, listen: false).setGameState(GameType.gameOver);
+    Provider.of<GameState>(buildContext, listen: false).setGameState(GameType.gameOver);
   }
 
   void nextLevel() {
     playSound('finish.wav');
-    Provider.of<GameSettings>(buildContext, listen: false).setGameState(GameType.nextLevel);
+    Provider.of<GameState>(buildContext, listen: false).setGameState(GameType.nextLevel);
   }
 
   void gamePause() {
-    Provider.of<GameSettings>(buildContext, listen: false).setGameState(GameType.gamePaused);
+    Provider.of<GameState>(buildContext, listen: false).setGameState(GameType.gamePaused);
   }
 
   @override

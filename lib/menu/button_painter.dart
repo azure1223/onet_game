@@ -11,13 +11,13 @@ class MenuButtonPainter extends CustomPainter {
     double radius = size.height / 2;
     Paint fillPaint = Paint()
       ..style = PaintingStyle.fill
-      ..color = COLOR_ORANGE;
+      ..color = BACK_COLOR;
 
     Paint strokePaint = Paint()
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 4.0
       ..style = PaintingStyle.stroke
-      ..color = COLOR_BROWN;
+      ..color = BORDER_COLOR;
 
     Rect rec = Rect.fromLTRB(0, 0, size.width, size.height);
 
@@ -36,7 +36,7 @@ class MenuButtonPainter extends CustomPainter {
 
     TextSpan span = TextSpan(
       style: TextStyle(
-        color: Colors.blue,
+        color: TEXT_COLOR,
         fontFamily: 'Shades',
         fontSize: 35.sp,
       ),

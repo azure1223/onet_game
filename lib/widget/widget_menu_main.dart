@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onet_mon/menu/stand_menu.dart';
 import 'package:onet_mon/utils/scale_config.dart';
+import 'package:onet_mon/widget/widget_option.dart';
 
 class MenuWidget extends StatefulWidget {
   Function playBtnFuc;
@@ -39,7 +40,29 @@ class _MenuWidgetState extends State<MenuWidget> {
                 title: 'menu',
                 items: [
                   StandMenuItem(title: 'play', onTap: widget.playBtnFuc),
-                  StandMenuItem(title: 'option', onTap: () {}),
+                  StandMenuItem(
+                      title: 'option',
+                      onTap: () {
+                        showGeneralDialog(
+                            barrierColor: Colors.black.withOpacity(.9),
+                            transitionBuilder: (context, a1, a2, widget) {
+                              final curvedValue = Curves.easeInOutBack.transform(a1.value) - 1.0;
+                              return Transform(
+                                transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
+                                child: Opacity(
+                                  opacity: a1.value,
+                                  child: OptionWidget(),
+                                ),
+                              );
+                            },
+                            transitionDuration: Duration(milliseconds: 500),
+                            barrierDismissible: true,
+                            barrierLabel: '',
+                            context: context,
+                            pageBuilder: (context, animation1, animation2) {
+                              return;
+                            });
+                      }),
                   StandMenuItem(
                       title: 'exit',
                       onTap: () {
