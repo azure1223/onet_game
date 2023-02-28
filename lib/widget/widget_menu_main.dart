@@ -16,6 +16,22 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
+  bool animate = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    startAnimation();
+  }
+
+  Future startAnimation() async {
+    await Future.delayed(Duration(milliseconds: 500));
+    setState(() {
+      animate = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,8 +43,12 @@ class _MenuWidgetState extends State<MenuWidget> {
             flex: 6,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SvgPicture.asset('assets/background/bg01.svg'),
+                padding: EdgeInsets.all(30.0),
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 1000),
+                  opacity: animate ? 1 : 0,
+                  child: SvgPicture.asset('assets/background/bg01.svg'),
+                ),
               ),
             ),
           ),

@@ -19,17 +19,23 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(Duration(milliseconds: 500));
     setState(() {
       animate = true;
     });
-    await Future.delayed(const Duration(milliseconds: 2000)).then((value) {
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-        builder: (context) {
-          return MainSreen();
-        },
-      ), (route) => false);
-    });
+    await Future.delayed(Duration(milliseconds: 2000)).then((value) => startMain());
+    // setState(() {
+    //   animate = false;
+    // });
+    // await Future.delayed(Duration(milliseconds: 500)).then((value) => startMain());
+  }
+
+  void startMain() {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+      builder: (context) {
+        return MainSreen();
+      },
+    ), (route) => false);
   }
 
   @override
@@ -57,12 +63,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(30.0),
                       child: AnimatedOpacity(
-                        duration: Duration(milliseconds: 2000),
+                        duration: Duration(milliseconds: animate ? 2000 : 500),
                         opacity: animate ? 1 : 0,
-                        child: Hero(
-                          tag: "DemoTag",
-                          child: SvgPicture.asset('assets/background/bg01.svg'),
-                        ),
+                        child: SvgPicture.asset('assets/background/bg01.svg'),
                       ),
                     ),
                   ),

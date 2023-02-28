@@ -20,11 +20,6 @@ class MyGame extends FlameGame with HasTappables {
   CommandComponent commComp;
 
   @override
-  void onGameResize(Vector2 canvasSize) {
-    super.onGameResize(canvasSize);
-  }
-
-  @override
   Color backgroundColor() => Colors.transparent;
 
   Future loadFiles() async {
