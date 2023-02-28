@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:onet_mon/classes/constants.dart';
+import 'package:onet_mon/classes/game_state.dart';
+import 'package:onet_mon/menu/custom_button.dart';
 import 'package:onet_mon/menu/stand_menu.dart';
 import 'package:onet_mon/utils/scale_config.dart';
 
@@ -25,12 +28,40 @@ class _NextLevelWidgetState extends State<NextLevelWidget> {
             flex: 4,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: StandMenu(
-                title: 'victory',
-                items: [
-                  StandMenuItem(title: 'congrat', onTap: () {}),
-                  StandMenuItem(title: 'next', onTap: widget.nexLevelBtn),
-                ],
+              child: CustomMenu(
+                title: 'Victory',
+                child: Column(
+                  children: [
+                    Text(
+                      'Level : ${GameData.level}',
+                      style: TextStyle(
+                        color: TEXT_COLOR,
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Score : ${GameData.score}',
+                      style: TextStyle(
+                        color: TEXT_COLOR,
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    AnarButton(
+                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                      onTap: widget.nexLevelBtn,
+                      child: Text(
+                        'Next LEVEL',
+                        style: TextStyle(
+                          color: TEXT_COLOR,
+                          fontFamily: 'Shades',
+                          fontSize: 30.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,7 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:onet_mon/components/comp_toggle_btn.dart';
+import 'package:onet_mon/classes/game_state.dart';
+import 'package:onet_mon/components/comp_text.dart';
 import 'package:onet_mon/components/timer_component.dart';
 import 'package:onet_mon/game_widget.dart';
 import 'package:onet_mon/utils/scale_config.dart';
@@ -26,38 +27,36 @@ class CommandComponent extends PositionComponent with HasGameRef<MyGame> {
         game.gameView.showHint();
       },
     );
-    musicBtn = ToggleButton(
-      onSprite: Sprite(game.images.fromCache('ic_music_on.png')),
-      offSprite: Sprite(game.images.fromCache('ic_music_off.png')),
-      size: Vector2(buttonSize, buttonSize),
-      position: Vector2((size.x - buttonSize) / 2, size.y - 100.h),
-      onTap: (value) {
-        if (value) {
-          game.audioplayer.playBgm();
-        } else {
-          game.audioplayer.stopBgm();
-        }
-      },
+    timer = TmerWidget(
+      size: Vector2(20.w, size.y - 220.h),
+      position: Vector2(15.w, 110.h),
+      onFinish: game.gameOver,
     );
-
-    soundBtn = ToggleButton(
-      isEnable: game.soundEnable,
-      onSprite: Sprite(game.images.fromCache('ic_sound_on.png')),
-      offSprite: Sprite(game.images.fromCache('ic_sound_off.png')),
-      size: Vector2(buttonSize, buttonSize),
-      position: Vector2((size.x - buttonSize) / 2, size.y - 50.h),
-      onTap: (value) {
-        game.soundEnable = value;
-      },
+    scoreComp = TextComp(
+      text: '0',
+      label: 'score',
+      size: size,
+      position: Vector2(0, size.y - 100.h),
     );
-    timer = TmerWidget(size: Vector2(20.w, size.y - 220.h), position: Vector2(15.w, 110.h), onFinish: game.gameOver);
+    levelComp = TextComp(
+      label: 'level',
+      text: '0',
+      size: size,
+      position: Vector2(0, size.y - 50.h),
+    );
 
     add(timer);
-
-    add(soundBtn);
-    add(hintBtn);
     add(pauseBtn);
-    add(musicBtn);
+    add(hintBtn);
+    add(scoreComp);
+    add(levelComp);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    scoreComp.text = '${GameData.score}';
+    levelComp.text = '${GameData.level}';
   }
 
   @override
@@ -77,8 +76,8 @@ class CommandComponent extends PositionComponent with HasGameRef<MyGame> {
 
   SpriteButtonComponent hintBtn;
   SpriteButtonComponent pauseBtn;
-  ToggleButton soundBtn;
-  ToggleButton musicBtn;
+  TextComp scoreComp;
+  TextComp levelComp;
 
   TmerWidget timer;
 }

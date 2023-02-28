@@ -67,7 +67,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                       title: 'exit',
                       onTap: () {
                         SystemNavigator.pop();
-
                         exit(0);
                       }),
                 ],

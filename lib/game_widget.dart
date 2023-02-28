@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:onet_mon/classes/class_game.dart';
 import 'package:onet_mon/classes/game_settings.dart';
+import 'package:onet_mon/classes/game_state.dart';
 import 'package:onet_mon/classes/onet_model.dart';
 import 'package:onet_mon/components/command_component.dart';
 import 'package:onet_mon/classes/constants.dart';
@@ -16,7 +16,7 @@ class MyGame extends FlameGame with HasTappables {
   bool soundEnable = true;
 
   OnetModel om;
-  AudioPlayerComponent audioplayer;
+
   CommandComponent commComp;
 
   @override
@@ -42,7 +42,6 @@ class MyGame extends FlameGame with HasTappables {
     int widht = (gameSize.x / (gameSize.y / height)).round();
 
     om = OnetModel.fromValue(w: widht, h: height);
-    audioplayer = AudioPlayerComponent();
 
     commComp = CommandComponent(
       size: Vector2(50.w, canvasSize.y),
@@ -68,7 +67,7 @@ class MyGame extends FlameGame with HasTappables {
   }
 
   void playSound(String n) {
-    if (!soundEnable) return;
+    if (!GameData.soundEnabled) return;
     audioplayer.playSfx(n);
   }
 
@@ -87,14 +86,15 @@ class MyGame extends FlameGame with HasTappables {
 
   @override
   void onDetach() {
-    audioplayer.stopBgm();
+    // audioplayer.stopBgm();
     commComp.timer.pauseTimer(false);
     super.onDetach();
   }
 
   @override
   void onAttach() {
-    audioplayer.stopBgm();
+    // GameState.musicEnabled?
+    // audioplayer.startBgm():audioplayer.stopBgm();
     commComp.timer.pauseTimer(true);
     super.onDetach();
   }
@@ -109,7 +109,7 @@ class MyGame extends FlameGame with HasTappables {
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
       case AppLifecycleState.detached:
-        audioplayer.stopBgm();
+        // audioplayer.stopBgm();
         commComp.timer.pauseTimer(false);
         break;
     }

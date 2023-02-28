@@ -1,9 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:onet_mon/classes/class_game.dart';
 import 'package:onet_mon/classes/game_settings.dart';
 import 'package:onet_mon/classes/game_state.dart';
 import 'package:onet_mon/classes/shared_data.dart';
+import 'package:onet_mon/components/audio_component.dart';
 import 'package:onet_mon/game_widget.dart';
 import 'package:onet_mon/painters/painter_background.dart';
 import 'package:onet_mon/utils/scale_config.dart';
@@ -25,6 +25,7 @@ class _MainSreenState extends State<MainSreen> {
 
   @override
   void initState() {
+    audioplayer = AudioPlayerComponent();
     getData().then((value) => setStates());
     super.initState();
   }
@@ -73,6 +74,7 @@ class _MainSreenState extends State<MainSreen> {
                     playBtnFuc: () {
                       context.read<GameState>().setGameState(GameType.playing);
                       GameData.level = 1;
+                      GameData.score = 0;
                       myGame = MyGame();
                     },
                   );

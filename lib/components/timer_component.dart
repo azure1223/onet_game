@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:onet_mon/classes/game_settings.dart';
+import 'package:onet_mon/classes/game_state.dart';
 
 class TmerWidget extends PositionComponent {
   Function onFinish;
@@ -16,6 +17,7 @@ class TmerWidget extends PositionComponent {
     if (timerRunning && reimainingTime > 0) {
       percent = ((total - reimainingTime) / total);
       countDown.update(dt);
+      GameData.timeLeft = reimainingTime;
     }
     super.update(dt);
   }

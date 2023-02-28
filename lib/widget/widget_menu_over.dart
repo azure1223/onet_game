@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onet_mon/classes/class_game.dart';
+import 'package:onet_mon/classes/constants.dart';
+import 'package:onet_mon/classes/game_state.dart';
+import 'package:onet_mon/menu/custom_button.dart';
 import 'package:onet_mon/menu/stand_menu.dart';
 import 'package:onet_mon/utils/scale_config.dart';
 import 'package:provider/provider.dart';
@@ -27,18 +29,61 @@ class _GameOverWidgetState extends State<GameOverWidget> {
             flex: 4,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: StandMenu(
+              child: CustomMenu(
                 title: 'GAME OVER',
-                items: [
-                  StandMenuItem(
-                      title: 'Close',
+                child: Column(
+                  children: [
+                    Text(
+                      'Level : ${GameData.level}',
+                      style: TextStyle(
+                        color: TEXT_COLOR,
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Score : ${GameData.score}',
+                      style: TextStyle(
+                        color: TEXT_COLOR,
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    AnarButton(
+                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
                       onTap: () {
                         context.read<GameState>().setGameState(GameType.none);
-                      }),
-                ],
+                      },
+                      child: Text(
+                        'Exit',
+                        style: TextStyle(
+                          color: TEXT_COLOR,
+                          fontFamily: 'Shades',
+                          fontSize: 30.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          // Expanded(
+          //   flex: 4,
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 20.w),
+          //     child: StandMenu(
+          //       title: 'GAME OVER',
+          //       items: [
+          //         StandMenuItem(
+          //             title: 'Close',
+          //             onTap: () {
+          //               context.read<GameState>().setGameState(GameType.none);
+          //             }),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Expanded(
             flex: 3,
             child: Container(),

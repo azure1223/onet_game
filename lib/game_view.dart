@@ -10,7 +10,6 @@ import 'package:onet_mon/classes/search_node.dart';
 import 'dart:math' as math;
 
 import 'package:onet_mon/game_widget.dart';
-import 'package:onet_mon/utils/scale_config.dart';
 
 class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
   Images images;
@@ -73,23 +72,23 @@ class GameView extends PositionComponent with HasGameRef<MyGame>, Tappable {
 
   void onMatched() {
     playSound('good.wav');
-    // int delta = mGame.lastMatch - mGame.timeLeft;
-    // mGame.lastMatch = mGame.timeLeft;
-    // int bonus = 10 - ((delta * 10) / 200);
+    // int delta = GameData.lastMatch - GameData.timeLeft;
+    // GameData.lastMatch = GameData.timeLeft;
+    // int bonus = 10 - ((delta * 10) / 200).round();
     // if (bonus < 0) {
     //   bonus = 0;
     // }
     if (model.isFinished()) {
-      // bonus += timeLeft / 10;
+      GameData.score += (GameData.timeLeft / 10).round();
       nextLevel();
     } else {
       GameData.score++;
       model.gravitate(GameData.level);
     }
-    // final int finalBonus = bonus + 20;
+    // int finalBonus = bonus + 20;
 
     // if (finalBonus > 0) {
-    //   // addBonus(finalBonus);
+    //   GameData.score += finalBonus;
     // }
     // updateScore();
   }

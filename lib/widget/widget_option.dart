@@ -13,6 +13,8 @@ class OptionWidget extends StatefulWidget {
 }
 
 class _OptionWidgetState extends State<OptionWidget> {
+  bool onMusic = false;
+  bool onSound = false;
   void setStates() {
     if (mounted) {
       setState(() {});

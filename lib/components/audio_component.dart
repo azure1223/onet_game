@@ -2,11 +2,14 @@ import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:onet_mon/game_widget.dart';
 
+AudioPlayerComponent audioplayer;
+
 class AudioPlayerComponent extends Component with HasGameRef<MyGame> {
   @override
   void onLoad() async {
     FlameAudio.bgm.initialize();
     await FlameAudio.audioCache.loadAll(['bg_music.mp3', 'good.wav', 'bad.wav', 'click.wav', 'finish.wav', 'random.wav']);
+
     return super.onLoad();
   }
 

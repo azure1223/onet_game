@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onet_mon/classes/class_game.dart';
-import 'package:onet_mon/screen/scrn_main.dart';
+import 'package:onet_mon/classes/game_state.dart';
+import 'package:onet_mon/screen/scrn_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:flame/flame.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: MainSreen(),
+      home: SplashScreen(),
     );
   }
 }

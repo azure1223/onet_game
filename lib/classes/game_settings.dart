@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 
 GameSettings gs;
 
@@ -9,7 +8,14 @@ class GameSettings {
   int gameTime;
   int bgColor;
   double bgOpacity;
-  GameSettings({this.gameIcon, this.gameResolution, this.gameTime, this.bgColor, this.bgOpacity});
+
+  GameSettings({
+    this.gameIcon,
+    this.gameResolution,
+    this.gameTime,
+    this.bgColor,
+    this.bgOpacity,
+  });
   factory GameSettings.fromList(List<String> list) => GameSettings(
         gameIcon: list[0],
         gameResolution: int.parse(list[1]),
@@ -18,7 +24,13 @@ class GameSettings {
         bgOpacity: double.parse(list[4]),
       );
   List<String> toList() => [gameIcon, '$gameResolution', '$gameTime', '$bgColor', '$bgOpacity'];
-  factory GameSettings.getDefautlt() => GameSettings(gameIcon: 'pokemon', gameResolution: 8, gameTime: 600, bgColor: 0, bgOpacity: 1.0);
+  factory GameSettings.getDefautlt() => GameSettings(
+        gameIcon: 'pokemon',
+        gameResolution: 8,
+        gameTime: 600,
+        bgColor: 0,
+        bgOpacity: 1.0,
+      );
 }
 
 List<String> icon_list = ['pokemon', 'crypto'];
